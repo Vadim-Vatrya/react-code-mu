@@ -1,3 +1,7 @@
+// import { nanoid } from 'nanoid';
+// import uuid from 'react-uuid';
+import { useState } from 'react';
+
 // 4
 
 // 4.1
@@ -444,3 +448,213 @@
 //   { id: 2, name: 'user2', surn: 'surn2', age: 31 },
 //   { id: 3, name: 'user3', surn: 'surn3', age: 32 },
 // ];
+
+// 15.1
+
+// function App() {
+//   const users = [
+//     { id: 1, name: 'user1', surn: 'surn1', age: 30 },
+//     { id: 2, name: 'user2', surn: 'surn2', age: 31 },
+//     { id: 3, name: 'user3', surn: 'surn3', age: 32 },
+//   ];
+//   const res = users.map((user, index) => (
+//     <tr key={users.id}>
+//       <td>{user.name}</td>
+//       <td>{user.surn}</td>
+//       <td>{user.age}</td>
+//     </tr>
+//   ));
+
+//   return (
+//     <table>
+//       <thead>
+//         <tr>
+//           <td>ФИО</td>
+//           <td>Имя</td>
+//           <td>Возраст</td>
+//         </tr>
+//       </thead>
+//       <tbody>{res}</tbody>
+//     </table>
+//   );
+// }
+
+// 16.1
+
+// const users = [
+//   { name: 'user1', surn: 'surn1', age: 30 },
+//   { name: 'user2', surn: 'surn2', age: 31 },
+//   { name: 'user3', surn: 'surn3', age: 32 },
+// ];
+// users.id = nanoid();
+
+// // console.log(users);
+
+// function App() {
+//   const res = users.map(user => (
+//     <p key={user.id}>
+//       <span>{user.name}</span> : <span>{user.surn}</span> :
+//       <span>{user.age}</span>
+//     </p>
+//   ));
+
+//   return <>{res}</>;
+// }
+
+// const users = [
+
+// function App() {
+//   let [inCart, setInCart] = useState(false);
+
+//   return (
+//     <div>
+//       <span>{inCart ? 'в корзине' : 'не в корзине'}</span>
+//       <button onClick={() => setInCart(!inCart)}>btn</button>
+//     </div>
+//   );
+// }
+
+// 17.1-17.6
+// function App() {
+//   const [name, setName] = useState('Ivan');
+//   const [surname, setSurname] = useState('Ivanov');
+//   const [age, setAge] = useState(30);
+//   const [banned, setBanned] = useState(false);
+//   const [count, setCount] = useState(age);
+
+//   return (
+//     <div>
+//       <span>{name}</span> :<span>{surname}</span> :<span>{age}</span>
+//       <br></br>
+//       <button onClick={() => setName('Vanya')}>btn1</button>
+//       <button onClick={() => setSurname('Ivanova')}>bt2</button>
+//       <button onClick={() => setAge(31)}>btn3</button>
+//       <br></br>
+//       <span>{banned ? 'забанен' : 'не забанен'}</span>
+//       <br></br>
+//       <button onClick={() => setBanned(true)}>btn4</button>
+//       <button onClick={() => setBanned(false)}>btn3</button>
+//       <br></br>
+//       <button onClick={() => setCount(count + 1)}>+</button>
+//       <button onClick={() => setCount(count - 1)}>-</button>
+//       <span>{count}</span>
+//     </div>
+//   );
+// }
+
+// 18.1
+
+// function App() {
+//   const [value, setValue] = useState('');
+//   const [cost, setCost] = useState();
+
+//   function handleChangeValue(event) {
+//     setValue(event.target.value);
+//   }
+//   function handleChangeCost(event) {
+//     setCost(event.target.value);
+//   }
+
+//   return (
+//     <div>
+//       <input value={value} onChange={handleChangeValue} />
+//       <p>text: {value}</p>
+//       <br></br>
+//       <input value={cost} onChange={handleChangeCost} />
+//       <p>text: {cost}</p>
+//     </div>
+//   );
+// }
+
+// 18.2
+
+// function App() {
+//   const [value, setValue] = useState('');
+
+//   function handleChangeValue(event) {
+//     setValue(event.target.value);
+//   }
+
+//   return (
+//     <div>
+//       <input value={value} onChange={handleChangeValue} />
+//       <p>text: {value.length}</p>
+//     </div>
+//   );
+// }
+
+// 18.3
+
+// function App() {
+//   const [age, setAge] = useState('');
+
+//   function handleChangeValue(event) {
+//     setAge(event.target.value);
+//   }
+
+//   return (
+//     <div>
+//       <input value={age} onChange={handleChangeValue} />
+//       <p>text: {2022 - Number(age)}</p>
+//     </div>
+//   );
+// }
+
+// 18.4
+
+// function App() {
+//   const [degree, setDegree] = useState('');
+
+//   function handleChangeValue(event) {
+//     setDegree(event.target.value);
+//   }
+
+//   return (
+//     <div>
+//       <input value={degree} onChange={handleChangeValue} />
+//       <p>text: {Number(degree) - 273}</p>
+//     </div>
+//   );
+// }
+
+// 18.5
+
+function App() {
+  const [value1, setValue1] = useState(0);
+  const [value2, setValue2] = useState(0);
+  const [value3, setValue3] = useState(0);
+  const [value4, setValue4] = useState(0);
+  const [value5, setValue5] = useState(0);
+
+  function handleChange1(event) {
+    setValue1(Number(event.target.value));
+  }
+
+  function handleChange2(event) {
+    setValue2(Number(event.target.value));
+  }
+
+  function handleChange3(event) {
+    setValue3(Number(event.target.value));
+  }
+
+  function handleChange4(event) {
+    setValue4(Number(event.target.value));
+  }
+
+  function handleChange5(event) {
+    setValue5(Number(event.target.value));
+  }
+
+  return (
+    <div>
+      <input value={value1} onChange={handleChange1} />
+      <input value={value2} onChange={handleChange2} />
+      <input value={value3} onChange={handleChange3} />
+      <input value={value4} onChange={handleChange4} />
+      <input value={value5} onChange={handleChange5} />
+      <p>result: {(value1 + value2 + value3 + value4 + value5) / 5}</p>
+    </div>
+  );
+}
+export default App;
