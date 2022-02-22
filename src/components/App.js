@@ -619,42 +619,372 @@ import { useState } from 'react';
 
 // 18.5
 
-function App() {
-  const [value1, setValue1] = useState(0);
-  const [value2, setValue2] = useState(0);
-  const [value3, setValue3] = useState(0);
-  const [value4, setValue4] = useState(0);
-  const [value5, setValue5] = useState(0);
+// function App() {
+//   const [value1, setValue1] = useState(0);
+//   const [value2, setValue2] = useState(0);
+//   const [value3, setValue3] = useState(0);
+//   const [value4, setValue4] = useState(0);
+//   const [value5, setValue5] = useState(0);
 
-  function handleChange1(event) {
-    setValue1(Number(event.target.value));
-  }
+//   function handleChange1(event) {
+//     setValue1(Number(event.target.value));
+//   }
 
-  function handleChange2(event) {
-    setValue2(Number(event.target.value));
-  }
+//   function handleChange2(event) {
+//     setValue2(Number(event.target.value));
+//   }
 
-  function handleChange3(event) {
-    setValue3(Number(event.target.value));
-  }
+//   function handleChange3(event) {
+//     setValue3(Number(event.target.value));
+//   }
 
-  function handleChange4(event) {
-    setValue4(Number(event.target.value));
-  }
+//   function handleChange4(event) {
+//     setValue4(Number(event.target.value));
+//   }
 
-  function handleChange5(event) {
-    setValue5(Number(event.target.value));
-  }
+//   function handleChange5(event) {
+//     setValue5(Number(event.target.value));
+//   }
+
+//   return (
+//     <div>
+//       <input value={value1} onChange={handleChange1} />
+//       <input value={value2} onChange={handleChange2} />
+//       <input value={value3} onChange={handleChange3} />
+//       <input value={value4} onChange={handleChange4} />
+//       <input value={value5} onChange={handleChange5} />
+//       <p>result: {(value1 + value2 + value3 + value4 + value5) / 5}</p>
+//     </div>
+//   );
+// }
+
+// 19.1
+
+// function App() {
+//   const [value1, setValue1] = useState(0);
+//   const [value2, setValue2] = useState(0);
+//   const [result1, setResult1] = useState(0);
+//   const [result2, setResult2] = useState(0);
+
+//   return (
+//     <div>
+//       <input value={value1} onChange={event => setValue1(event.target.value)} />
+//       <input value={value2} onChange={event => setValue2(event.target.value)} />
+
+//       <button onClick={() => setResult1(Number(value1) + Number(value2))}>
+//         btn
+//       </button>
+//       <button onClick={() => setResult2(Number(value1) * Number(value2))}>
+//         btn
+//       </button>
+//       <p>result: {result1}</p>
+//       <p>result: {result2}</p>
+//     </div>
+//   );
+// }
+
+// 19.2-19.3
+
+// function App() {
+//   const [value1, setValue1] = useState('2022 - 12 - 21');
+//   const [value2, setValue2] = useState('2022 - 12 - 31');
+//   const [result, setResult] = useState(0);
+
+//   function handleClick() {
+//     setResult(Number(value2) - Number(value1));
+//   }
+
+//   return (
+//     <div>
+//       <input value={value1} onChange={event => setValue1(event.target.value)} />
+//       <input value={value2} onChange={event => setValue2(event.target.value)} />
+
+//       <button onClick={handleClick}>btn</button>
+//       <p>result: {result}</p>
+//     </div>
+//   );
+// }
+
+// 19.4
+
+// function digit(num) {
+//   return num.split('').reduce((sum, elem) => sum + elem, 0);
+// }
+
+// function App() {
+//   const [value, setValue] = useState(0);
+//   const [blur, setBlur] = useState(0);
+
+//   function handleChange(event) {
+//     setValue(event.target.value);
+//   }
+//   function onBlur() {
+//     setBlur(value => value.split('').reduce((sum, elem) => sum + elem, 0));
+//   }
+
+//   return (
+//     <>
+//       <input value={value} onBlur={onBlur} onChange={handleChange} />
+//       <p>{blur}</p>
+//     </>
+//   );
+// }
+
+// 19.5
+
+// 20.1
+// function App() {
+//   const [value, setValue] = useState('');
+//   // const [result, setResult] = useState(0);
+
+//   function handleChange(event) {
+//     setValue(function translitRuEn(event) {
+//     let magic = function (lit) {
+//       let arrayLits = [
+//         ['а', 'a'],
+//         ['б', 'b'],
+//         ['в', 'v'],
+//         ['г', 'g'],
+//         ['д', 'd'],
+//         ['е', 'e'],
+//         ['ё', 'yo'],
+//         ['ж', 'zh'],
+//         ['з', 'z'],
+//         ['и', 'i'],
+//         ['й', 'j'],
+//         ['к', 'k'],
+//         ['л', 'l'],
+//         ['м', 'm'],
+//         ['н', 'n'],
+//         ['о', 'o'],
+//         ['п', 'p'],
+//         ['р', 'r'],
+//         ['с', 's'],
+//         ['т', 't'],
+//         ['у', 'u'],
+//         ['ф', 'f'],
+//         ['х', 'h'],
+//         ['ц', 'c'],
+//         ['ч', 'ch'],
+//         ['ш', 'w'],
+//         ['щ', 'shh'],
+//         ['ъ', "''"],
+//         ['ы', 'y'],
+//         ['ь', "'"],
+//         ['э', 'e'],
+//         ['ю', 'yu'],
+//         ['я', 'ya'],
+//         ['А', 'A'],
+//         ['Б', 'B'],
+//         ['В', 'V'],
+//         ['Г', 'G'],
+//         ['Д', 'D'],
+//         ['Е', 'E'],
+//         ['Ё', 'YO'],
+//         ['Ж', 'ZH'],
+//         ['З', 'Z'],
+//         ['И', 'I'],
+//         ['Й', 'J'],
+//         ['К', 'K'],
+//         ['Л', 'L'],
+//         ['М', 'M'],
+//         ['Н', 'N'],
+//         ['О', 'O'],
+//         ['П', 'P'],
+//         ['Р', 'R'],
+//         ['С', 'S'],
+//         ['Т', 'T'],
+//         ['У', 'U'],
+//         ['Ф', 'F'],
+//         ['Х', 'H'],
+//         ['Ц', 'C'],
+//         ['Ч', 'CH'],
+//         ['Ш', 'W'],
+//         ['Щ', 'SHH'],
+//         ['Ъ', ''],
+//         ['Ы', 'Y'],
+//         ['Ь', ''],
+//         ['Э', 'E'],
+//         ['Ю', 'YU'],
+//         ['Я', 'YA'],
+//         ['0', '0'],
+//         ['1', '1'],
+//         ['2', '2'],
+//         ['3', '3'],
+//         ['4', '4'],
+//         ['5', '5'],
+//         ['6', '6'],
+//         ['7', '7'],
+//         ['8', '8'],
+//         ['9', '9'],
+//         ['a', 'a'],
+//         ['b', 'b'],
+//         ['c', 'c'],
+//         ['d', 'd'],
+//         ['e', 'e'],
+//         ['f', 'f'],
+//         ['g', 'g'],
+//         ['h', 'h'],
+//         ['i', 'i'],
+//         ['j', 'j'],
+//         ['k', 'k'],
+//         ['l', 'l'],
+//         ['m', 'm'],
+//         ['n', 'n'],
+//         ['o', 'o'],
+//         ['p', 'p'],
+//         ['q', 'q'],
+//         ['r', 'r'],
+//         ['s', 's'],
+//         ['t', 't'],
+//         ['u', 'u'],
+//         ['v', 'v'],
+//         ['w', 'w'],
+//         ['x', 'x'],
+//         ['y', 'y'],
+//         ['z', 'z'],
+//         ['A', 'A'],
+//         ['B', 'B'],
+//         ['C', 'C'],
+//         ['D', 'D'],
+//         ['E', 'E'],
+//         ['F', 'F'],
+//         ['G', 'G'],
+//         ['H', 'H'],
+//         ['I', 'I'],
+//         ['J', 'J'],
+//         ['K', 'K'],
+//         ['L', 'L'],
+//         ['M', 'M'],
+//         ['N', 'N'],
+//         ['O', 'O'],
+//         ['P', 'P'],
+//         ['Q', 'Q'],
+//         ['R', 'R'],
+//         ['S', 'S'],
+//         ['T', 'T'],
+//         ['U', 'U'],
+//         ['V', 'V'],
+//         ['W', 'W'],
+//         ['X', 'X'],
+//         ['Y', 'Y'],
+//         ['Z', 'Z'],
+//       ];
+//       let efim360ru = arrayLits
+//         .map(i => {
+//           if (i[0] === lit) {
+//             return i[1];
+//           } else {
+//             return undefined;
+//           }
+//         })
+//         .filter(i => i != undefined);
+//       if (efim360ru.length > 0) {
+//         return efim360ru[0];
+//       } else {
+//         return '-';
+//       }
+//     };
+// );
+//   }
+
+//     return Array.from(value)
+//       .map(i => magic(i))
+//       .join('');
+//   }
+
+//   return (
+//     <div>
+//       <textarea value={value} onChange={handleChange} />
+//       <p>{value}</p>
+//     </div>
+//   );
+// }
+
+//  21.1
+// function App() {
+//   const [checked, setChecked] = useState(true);
+
+//   function handleChange() {
+//     setChecked(!checked);
+//   }
+
+//   let msg = '';
+//   function handleClick() {
+//     if (checked) {
+//       msg = <p>Hello</p>;
+//     } else {
+//       msg = <p>By</p>;
+//     }
+//   }
+
+//   return (
+//     <>
+//       <input type="checkbox" checked={checked} onChange={handleChange} />
+//       <button onClick={handleClick}>btn</button>
+//       <p>{msg}</p>
+//     </>
+//   );
+// }
+
+// 21.2
+// function App() {
+//   const [checked, setChecked] = useState(true);
+
+//   return (
+//     <div>
+//       <input
+//         type="checkbox"
+//         checked={checked}
+//         onChange={() => setChecked(!checked)}
+//       />
+//       <p>состояние: {checked ? 'отмечен' : 'не отмечен'}</p>
+//     </div>
+//   );
+// }
+
+import { useEffect } from 'react';
+
+const App = () => {
+  const [count, setCount] = useState(0);
+  const [newCount, setNewCount] = useState(0);
+
+  // when component is mounted
+  useEffect(() => {
+    alert('Это сообщение показал useEffect после успешной отрисовки!');
+  });
+
+  // runs once when component mounted
+  useEffect(() => {
+    alert('Count поменлся!');
+  }, [count]);
+
+  useEffect(() => {
+    return () => alert('Компонет умер :(');
+  });
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  const incrementNewCount = () => {
+    setNewCount(newCount + 1);
+  };
 
   return (
     <div>
-      <input value={value1} onChange={handleChange1} />
-      <input value={value2} onChange={handleChange2} />
-      <input value={value3} onChange={handleChange3} />
-      <input value={value4} onChange={handleChange4} />
-      <input value={value5} onChange={handleChange5} />
-      <p>result: {(value1 + value2 + value3 + value4 + value5) / 5}</p>
+      <h2>useEffect</h2>
+      <p>Count: {count}</p>
+      <button onClick={() => increment()}>Increment with effect</button>
+
+      <p>New Count: {newCount}</p>
+      <button onClick={() => incrementNewCount()}>
+        Increment without effect
+      </button>
     </div>
   );
-}
+};
+
+// export default UseEffectPage
+
 export default App;
