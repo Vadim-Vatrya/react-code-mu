@@ -1,6 +1,6 @@
 // import { nanoid } from 'nanoid';
 // import uuid from 'react-uuid';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 // 4
 
@@ -488,7 +488,7 @@ import { useState } from 'react';
 // ];
 // users.id = nanoid();
 
-// // console.log(users);
+// console.log(users);
 
 // function App() {
 //   const res = users.map(user => (
@@ -677,8 +677,10 @@ import { useState } from 'react';
 //       <button onClick={() => setResult2(Number(value1) * Number(value2))}>
 //         btn
 //       </button>
-//       <p>result: {result1}</p>
-//       <p>result: {result2}</p>
+//       <p>
+//         result: {result1} : {result2}
+//       </p>
+//       {/* <p>result: {result2}</p> */}
 //     </div>
 //   );
 // }
@@ -943,48 +945,48 @@ import { useState } from 'react';
 //   );
 // }
 
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
-const App = () => {
-  const [count, setCount] = useState(0);
-  const [newCount, setNewCount] = useState(0);
+// const App = () => {
+//   const [count, setCount] = useState(0);
+//   const [newCount, setNewCount] = useState(0);
 
-  // when component is mounted
-  useEffect(() => {
-    alert('Это сообщение показал useEffect после успешной отрисовки!');
-  });
+//   // when component is mounted
+//   useEffect(() => {
+//     alert('Это сообщение показал useEffect после успешной отрисовки!');
+//   });
 
-  // runs once when component mounted
-  useEffect(() => {
-    alert('Count поменлся!');
-  }, [count]);
+//   // runs once when component mounted
+//   useEffect(() => {
+//     alert('Count поменлся!');
+//   }, [count]);
 
-  useEffect(() => {
-    return () => alert('Компонет умер :(');
-  });
+//   useEffect(() => {
+//     return () => alert('Компонет умер :(');
+//   });
 
-  const increment = () => {
-    setCount(count + 1);
-  };
+//   const increment = () => {
+//     setCount(count + 1);
+//   };
 
-  const incrementNewCount = () => {
-    setNewCount(newCount + 1);
-  };
+//   const incrementNewCount = () => {
+//     setNewCount(newCount + 1);
+//   };
 
-  return (
-    <div>
-      <h2>useEffect</h2>
-      <p>Count: {count}</p>
-      <button onClick={() => increment()}>Increment with effect</button>
+//   return (
+//     <div>
+//       <h2>useEffect</h2>
+//       <p>Count: {count}</p>
+//       <button onClick={() => increment()}>Increment with effect</button>
 
-      <p>New Count: {newCount}</p>
-      <button onClick={() => incrementNewCount()}>
-        Increment without effect
-      </button>
-    </div>
-  );
-};
+//       <p>New Count: {newCount}</p>
+//       <button onClick={() => incrementNewCount()}>
+//         Increment without effect
+//       </button>
+//     </div>
+//   );
+// };
 
 // export default UseEffectPage
 
-export default App;
+// export default App;
