@@ -238,40 +238,251 @@ import { useState } from 'react';
 // }
 
 // 28.1
-function getSum(arr) {
-  return arr.reduce((a, b) => (a + b) / arr.length, 0);
-  // let sum = 0;
+// function getSum(arr) {
+//   return arr.reduce((a, b) => (a + b) / arr.length, 0);
+//   // let sum = 0;
 
-  // for (let elem of arr) {
-  //   sum += elem;
-  // }
-  // return sum / arr.length;
-}
+//   // for (let elem of arr) {
+//   //   sum += elem;
+//   // }
+//   // return sum / arr.length;
+// }
+
+// function App1() {
+//   const [notes, setNotes] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+//   function changeHandler(index, event) {
+//     setNotes([
+//       ...notes.slice(0, index),
+//       event.target.value,
+//       ...notes.slice(index + 1),
+//     ]);
+//   }
+//   const result = notes.map((note, index) => {
+//     return (
+//       <input
+//         key={index}
+//         value={note}
+//         onChange={event => changeHandler(index, event)}
+//       />
+//     );
+//   });
+//   return (
+//     <>
+//       {result}
+//       {getSum(notes)}
+//     </>
+//   );
+// }
+
+// 29.1-29.2
+
+// function App1() {
+//   const [notes, setNotes] = useState(['a', 'b', 'c', 'd', 'e']);
+//   const [editNum, setEditNum] = useState(null);
+
+//   const list = notes.map((note, index) => {
+//     return (
+//       <li key={index}>
+//         {note}
+//         <button onClick={() => setEditNum(index)}></button>
+//       </li>
+//     );
+//   });
+
+//   function changeItem(event) {
+//     setNotes([
+//       ...notes.slice(0, editNum),
+//       event.target.value,
+//       ...notes.slice(editNum + 1),
+//     ]);
+//   }
+
+//   const onBlur = () => {
+//     setEditNum(null);
+//   };
+
+//   return (
+//     <div>
+//       <ul>{list}</ul>
+
+//       <input
+//         value={editNum ? notes[editNum] : ''}
+//         onChange={changeItem}
+//         onBlur={onBlur}
+//       />
+//     </div>
+//   );
+// }
+
+// 30-1.1
+
+// function App1() {
+//   const [notes, setNotes] = useState(['a', 'b', 'c', 'd', 'e']);
+//   const [editNum, setEditNum] = useState(null);
+//   const [value, setValue] = useState('');
+
+//   const result = notes.map((note, index) => {
+//     return (
+//       <li key={index} onClick={() => setEditNum(index)}>
+//         {note}
+//       </li>
+//     );
+//   });
+
+//   const changeItem = event => {
+//     setNotes([
+//       ...notes.slice(0, editNum),
+//       event.target.value,
+//       ...notes.slice(editNum + 1),
+//     ]);
+//   };
+
+//   const stopEdit = event => {
+//     setEditNum(null);
+//   };
+
+//   const changeValue = event => {
+//     setValue(event.target.value);
+//   };
+
+//   const addItem = event => {
+//     setNotes([...notes, value]);
+//   };
+
+//   let input;
+//   if (editNum) {
+//     input = (
+//       <input value={notes[editNum]} onChange={changeItem} onBlur={stopEdit} />
+//     );
+//   } else {
+//     input = <input value={value} onChange={changeValue} onBlur={addItem} />;
+//   }
+
+//   return (
+//     <div>
+//       <ul>
+//         {result}
+//         {input}
+//       </ul>
+//     </div>
+//   );
+// }
+
+//   let input;
+//   if (editNum) {
+//     input = (
+//       <input value={notes[editNum]} onChange={changeItem} onBlur={stopEdit} />
+//     );
+//   } else {
+//     input = <input value={value} onChange={changeValue} onBlur={addItem} />;
+//   }
+
+//   return (
+//     <div>
+//       {result}
+//       {input}
+//     </div>
+//   );
+// }
+
+// function App1() {
+//   const [notes, setNotes] = useState(['a', 'b', 'c', 'd', 'e']);
+//   const [editNum, setEditNum] = useState(null);
+//   const [value, setValue] = useState('');
+
+//   const result = notes.map((note, index) => {
+//     return (
+//       <li key={index} onClick={() => startEdit(index)}>
+//         {note}
+//       </li>
+//     );
+//   });
+
+//   function startEdit(index) {
+//     setEditNum(index);
+//     setValue(notes[index]);
+//   }
+
+//   const changeHandler = event => {
+//     setValue(event.target.value);
+
+//     if (editNum) {
+//       setNotes([
+//         ...notes.slice(0, editNum),
+//         event.target.value,
+//         ...notes.slice(editNum + 1),
+//       ]);
+//     }
+//   };
+
+//   function blurHandler(event) {
+//     if (!editNum) {
+//       setNotes([...notes, value]);
+//     } else {
+//       setEditNum(null);
+//     }
+
+//     setValue('');
+//   }
+
+//   return (
+//     <div>
+//       <ul>
+//         {result}
+//         <input value={value} onChange={changeHandler} onBlur={blurHandler} />
+//       </ul>
+//     </div>
+//   );
+// }
+
+// 30-1.3
 
 function App1() {
-  const [notes, setNotes] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
+  const [editNum, setEditNum] = useState(null);
 
-  function changeHandler(index, event) {
-    setNotes([
-      ...notes.slice(0, index),
-      event.target.value,
-      ...notes.slice(index + 1),
-    ]);
-  }
   const result = notes.map((note, index) => {
     return (
-      <input
-        key={index}
-        value={note}
-        onChange={event => changeHandler(index, event)}
-      />
+      <li key={index} onClick={() => startEdit(index)}>
+        {note}
+      </li>
     );
   });
+
+  function startEdit(index) {
+    setEditNum(index);
+  }
+  function editItem(event) {
+    setNotes([
+      ...notes.slice(0, editNum),
+      event.target.value,
+      ...notes.slice(editNum + 1),
+    ]);
+  }
+  function createItem() {
+    if (!editNum) {
+      const res = [...notes, ''];
+      setNotes(res);
+      setEditNum(res.length - 1);
+    }
+  }
+  function stopEdit() {
+    setEditNum(null);
+  }
+
   return (
-    <>
-      {result}
-      {getSum(notes)}
-    </>
+    <div>
+      <ul>
+        {result}
+        <input
+          value={editNum ? notes[editNum] : ''}
+          onChange={editItem}
+          onFocus={createItem}
+          onBlur={stopEdit}
+        />
+      </ul>
+    </div>
   );
 }
 
