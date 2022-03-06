@@ -438,50 +438,110 @@ import { useState } from 'react';
 
 // 30-1.3
 
+// function App1() {
+//   const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
+//   const [editNum, setEditNum] = useState(null);
+
+//   const result = notes.map((note, index) => {
+//     return (
+//       <li key={index} onClick={() => startEdit(index)}>
+//         {note}
+//       </li>
+//     );
+//   });
+
+//   function startEdit(index) {
+//     setEditNum(index);
+//   }
+//   function editItem(event) {
+//     setNotes([
+//       ...notes.slice(0, editNum),
+//       event.target.value,
+//       ...notes.slice(editNum + 1),
+//     ]);
+//   }
+//   function createItem() {
+//     if (!editNum) {
+//       const res = [...notes, ''];
+//       setNotes(res);
+//       setEditNum(res.length - 1);
+//     }
+//   }
+//   function stopEdit() {
+//     setEditNum(null);
+//   }
+
+//   return (
+//     <div>
+//       <ul>
+//         {result}
+//         <input
+//           value={editNum ? notes[editNum] : ''}
+//           onChange={editItem}
+//           onFocus={createItem}
+//           onBlur={stopEdit}
+//         />
+//       </ul>
+//     </div>
+//   );
+// }
+
+// const App1 = () => {
+//   const [obj, setObj] = useState({
+//     prop1: 'value1',
+//     prop2: 'value2',
+//     prop3: 'value3',
+//   });
+
+//   const handleChange1 = click => {
+//     setObj({ ...obj, ...{ prop1: '!' } });
+//   };
+
+//   const handleChange2 = click => {
+//     setObj({ ...obj, ...{ prop2: '!!' } });
+//   };
+
+//   const handleChange3 = click => {
+//     setObj({ ...obj, ...{ prop3: '!!!' } });
+//   };
+
+//   return (
+//     <div>
+//       <span>{obj.prop1}</span>
+//       <button onClick={handleChange1}>btn1</button> <br></br>
+//       <span>{obj.prop2}</span>
+//       <button onClick={handleChange2}>btn2</button> <br></br>
+//       <span>{obj.prop3}</span>
+//       <button onClick={handleChange3}>btn3</button>
+//     </div>
+//   );
+// };
+
+// 32.1-2
+
+const initDate = {
+  year: 2025,
+  month: 12,
+  day: 31,
+};
+
 function App1() {
-  const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
-  const [editNum, setEditNum] = useState(null);
+  const [obj, setObj] = useState(initDate);
 
-  const result = notes.map((note, index) => {
-    return (
-      <li key={index} onClick={() => startEdit(index)}>
-        {note}
-      </li>
-    );
-  });
-
-  function startEdit(index) {
-    setEditNum(index);
-  }
-  function editItem(event) {
-    setNotes([
-      ...notes.slice(0, editNum),
-      event.target.value,
-      ...notes.slice(editNum + 1),
-    ]);
-  }
-  function createItem() {
-    if (!editNum) {
-      const res = [...notes, ''];
-      setNotes(res);
-      setEditNum(res.length - 1);
-    }
-  }
-  function stopEdit() {
-    setEditNum(null);
+  function handleChange(prop, event) {
+    setObj({ ...obj, ...{ [prop]: event.target.value } });
   }
 
   return (
     <div>
-      <ul>
-        {result}
-        <input
-          value={editNum ? notes[editNum] : ''}
-          onChange={editItem}
-          onFocus={createItem}
-          onBlur={stopEdit}
-        />
-      </ul>
+      <input value={obj.year} onChange={event => handleChange('year', event)} />
+      <input
+        value={obj.month}
+        onChange={event => handleChange('month', event)}
+      />
+      <input value={obj.day} onChange={event => handleChange('day', event)} />
+      <br />
+      {obj.year}-{obj.month}-{obj.day}
     </div>
   );
 }
