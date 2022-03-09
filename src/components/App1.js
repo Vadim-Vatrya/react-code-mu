@@ -519,31 +519,155 @@ import { useState } from 'react';
 
 // 32.1-2
 
-const initDate = {
-  year: 2025,
-  month: 12,
-  day: 31,
-};
+// const initDate = {
+//   year: 2025,
+//   month: 12,
+//   day: 31,
+// };
+
+// function App1() {
+//   const [obj, setObj] = useState(initDate);
+
+//   function handleChange(prop, event) {
+//     setObj({ ...obj, ...{ [prop]: event.target.value } });
+//   }
+
+//   return (
+//     <div>
+//       <input value={obj.year} onChange={event => handleChange('year', event)} />
+//       <input
+//         value={obj.month}
+//         onChange={event => handleChange('month', event)}
+//       />
+//       <input value={obj.day} onChange={event => handleChange('day', event)} />
+//       <br />
+//       {obj.year}-{obj.month}-{obj.day}
+//     </div>
+//   );
+// }
+
+// 33.1-33.7
+const initNotes = [
+  {
+    id: 'GYi9G_uC4gBF1e2SixDvu',
+    prop1: 'value11',
+    prop2: 'value12',
+    prop3: 'value13',
+  },
+  {
+    id: 'IWSpfBPSV3SXgRF87uO74',
+    prop1: 'value21',
+    prop2: 'value22',
+    prop3: 'value23',
+  },
+  {
+    id: 'JAmjRlfQT8rLTm5tG2m1L',
+    prop1: 'value31',
+    prop2: 'value32',
+    prop3: 'value33',
+  },
+];
 
 function App1() {
-  const [obj, setObj] = useState(initDate);
+  const [notes, setNotes] = useState(initNotes);
 
-  function handleChange(prop, event) {
-    setObj({ ...obj, ...{ [prop]: event.target.value } });
+  const id = 'JAmjRlfQT8rLTm5tG2m1L';
+
+  const newElem = {
+    id: 'GMNCZnFT4rbBP6cirA0Ha',
+    prop1: 'value41',
+    prop2: 'value42',
+    prop3: 'value43',
+  };
+
+  const data = {
+    id: 'JAmjRlfQT8rLTm5tG2m1L',
+    prop1: 'value21 !',
+    prop2: 'value22 !',
+    prop3: 'value23 !',
+  };
+
+  const prop = 'prop2';
+  const prop1 = 'prop2';
+  const prop2 = 'prop3';
+  const value = '!';
+
+  function addItem() {
+    setNotes([...notes, newElem]);
   }
 
+  function removeItem(id) {
+    setNotes(notes.filter(note => note.id !== id));
+  }
+
+  function changeItem() {
+    setNotes(notes.map(note => (data.id === note.id ? data : note)));
+  }
+
+  // const copys = Object.assign([], notes);
+
+  // const res = copys.map(copy => {
+  //   if (copy.id === id) {
+  //     return {
+  //       ...copy,
+  //       [prop1]: 'value32' + value,
+  //       [prop2]: 'value33' + value,
+  //     };
+  //   } else {
+  //     return copy;
+  //   }
+  // });
+
+  function changeProperty() {
+    setNotes(
+      notes.map(note => {
+        if (note.id === id) {
+          return {
+            ...note,
+            [prop1]: 'value32' + value,
+            [prop2]: 'value33' + value,
+          };
+        } else {
+          return note;
+        }
+      }),
+    );
+  }
+
+  function getElementObj() {
+    setNotes(
+      notes.reduce(
+        notes.reduce((res, note) => (note.id === id ? note[prop] : res), ''),
+      ),
+    );
+  }
+
+  // function changeProperty() {
+  //   setNotes(res);
+  // }
+
+  const result = notes.map(note => {
+    return (
+      <p key={note.id}>
+        <span>{note.prop1}</span>,<span>{note.prop2}</span>,
+        <span>{note.prop3}</span>
+      </p>
+    );
+  });
+
   return (
-    <div>
-      <input value={obj.year} onChange={event => handleChange('year', event)} />
-      <input
-        value={obj.month}
-        onChange={event => handleChange('month', event)}
-      />
-      <input value={obj.day} onChange={event => handleChange('day', event)} />
-      <br />
-      {obj.year}-{obj.month}-{obj.day}
-    </div>
+    <>
+      {result}
+      <button onClick={() => removeItem(id)}>Remove</button>
+      <br></br>
+      <button onClick={() => addItem()}>Add</button>
+      <br></br>
+      <button onClick={() => changeItem()}>Change Item</button>
+      <br></br>
+      <button onClick={() => changeProperty()}>Change Property</button>
+      <br></br>
+      <button onClick={() => getElementObj()}>Get property</button>
+    </>
   );
 }
-
 export default App1;
